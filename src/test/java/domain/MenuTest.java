@@ -43,4 +43,10 @@ public class MenuTest {
     void getPrice() {
         assertThat(MenuTest.chickenMenu1.getPrice()).isEqualTo(18000);
     }
+
+    @Test
+    @DisplayName("toString 메서드가 제대로 동작하는지")
+    void toStringTest() {
+        assertThat(MenuTest.chickenMenu1.toString()).isEqualTo("[치킨] 3 - 가메뉴 : 18000원");
+    }
 }

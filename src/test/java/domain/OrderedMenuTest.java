@@ -52,4 +52,11 @@ public class OrderedMenuTest {
             orderedMenu.add(MenuTest.chickenMenu1, 50);
         }).isInstanceOf(IllegalArgumentException.class).hasMessageContaining("한 메뉴의 최대 수량은");
     }
+
+    @Test
+    @DisplayName("toString 메서드가 제대로 동작하는지")
+    void toStringTest() {
+        orderedMenu.add(MenuTest.chickenMenu1, 1);
+        assertThat(orderedMenu.toString()).isEqualTo("가메뉴 1 18000\n");
+    }
 }
