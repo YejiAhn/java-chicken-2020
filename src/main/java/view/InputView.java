@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import domain.ChoiceInMain;
 import domain.Menu;
+import domain.PaymentMethod;
 import domain.Table;
 
 public class InputView {
@@ -57,6 +58,18 @@ public class InputView {
         } catch (Exception e) {
             OutputView.printErrorMessage("메뉴 수량은 숫자로 입력해주세요.");
             return inputMenuQuantity();
+        }
+    }
+
+    public static PaymentMethod inputPaymentMethod(int tableNumber) {
+        System.out.println("## " + tableNumber + "번 테이블의 결제를 진행합니다.");
+        System.out.println("## 신용 카드는 1번, 현금은 2번");
+        try {
+            String paymentMethod = scanner.nextLine();
+            return PaymentMethod.of(paymentMethod);
+        } catch (Exception e) {
+            OutputView.printErrorMessage(e.getMessage());
+            return inputPaymentMethod(tableNumber);
         }
     }
 }

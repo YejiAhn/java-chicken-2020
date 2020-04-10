@@ -24,7 +24,7 @@ public class ChickenStoreController {
         }
 
         if (choiceInMain == ChoiceInMain.PAY) {
-
+            OutputView.printTables(tables);
         }
 
         if (choiceInMain == ChoiceInMain.TERMINATE) {
