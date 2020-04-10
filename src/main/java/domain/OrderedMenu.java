@@ -9,7 +9,7 @@ public class OrderedMenu {
     private static final int INITIAL_VALUE_ZERO = 0;
     private Map<Menu, Integer> orderedMenu = new HashMap<>();
 
-    public boolean isEmpty() {
+    public boolean hasNoOrderedMenu() {
         return orderedMenu.isEmpty();
     }
 

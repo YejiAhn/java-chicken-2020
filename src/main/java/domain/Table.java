@@ -1,7 +1,6 @@
 package domain;
 
 public class Table {
-    private static final int INITIAL_VALUE_ZERO = 0;
     private final int number;
     private OrderedMenu orderedMenu = new OrderedMenu();
 
@@ -10,7 +9,7 @@ public class Table {
     }
 
     public boolean hasOrdered() {
-        return !orderedMenu.isEmpty();
+        return !orderedMenu.hasNoOrderedMenu();
     }
 
     public boolean hasSameTableNumber(String number) {

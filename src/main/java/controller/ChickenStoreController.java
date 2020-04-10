@@ -13,13 +13,20 @@ import view.InputView;
 import view.OutputView;
 
 public class ChickenStoreController {
-    private State state;
+    private State state = State.BEFORE_RUNNING;
 
     public void run() {
-        ChoiceInMain choiceInMain = InputView.inputChoiceInMain();
+        state = State.RUNNING;
         final List<Table> tables = TableRepository.tables();
         final List<Menu> menus = MenuRepository.menus();
 
+        while (state != State.END) {
+            processCommand(tables, menus);
+        }
+    }
+
+    private void processCommand(List<Table> tables, List<Menu> menus) {
+        ChoiceInMain choiceInMain = InputView.inputChoiceInMain();
         if (choiceInMain == ChoiceInMain.ORDER) {
             processOrdering(tables, menus);
         }
@@ -35,6 +42,7 @@ public class ChickenStoreController {
 
         if (choiceInMain == ChoiceInMain.TERMINATE) {
             OutputView.printTerminateMessage();
+            state = State.END;
         }
     }
 

@@ -63,8 +63,8 @@ public class OutputView {
     }
 
     public static void printFinalAmountDue(double money) {
-        System.out.println("## 최종 결제할 금액");
-        System.out.println(money + "원");
+        System.out.println("\n## 최종 결제할 금액");
+        System.out.println(money + "원\n");
     }
 
     public static void printTerminateMessage() {
