@@ -12,6 +12,10 @@ public class Table {
         this.number = number;
     }
 
+    public boolean hasOrdered() {
+        return !orderedMenu.isEmpty();
+    }
+
     public boolean hasSameTableNumber(String number) {
         return String.valueOf(this.number).equals(number);
     }
