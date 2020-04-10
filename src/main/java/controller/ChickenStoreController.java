@@ -12,17 +12,16 @@ import view.OutputView;
 
 public class ChickenStoreController {
     public static void run() {
-        OutputView.printMain();
         ChoiceInMain choiceInMain = InputView.inputChoiceInMain();
+        final List<Table> tables = TableRepository.tables();
+        final List<Menu> menus = MenuRepository.menus();
 
         if (choiceInMain == ChoiceInMain.ORDER) {
-            final List<Table> tables = TableRepository.tables();
             OutputView.printTables(tables);
-
-            final int tableNumber = InputView.inputTableNumber();
-
-            final List<Menu> menus = MenuRepository.menus();
+            final Table tableOrdering = InputView.inputTableNumber(tables);
             OutputView.printMenus(menus);
+            final Menu menu = InputView.inputMenuNumber(menus);
+            final int menuQuantity = InputView.inputMenuQuantity();
         }
 
         if (choiceInMain == ChoiceInMain.PAY) {
