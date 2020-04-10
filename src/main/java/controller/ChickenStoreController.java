@@ -5,6 +5,7 @@ import java.util.List;
 import domain.ChoiceInMain;
 import domain.Menu;
 import domain.MenuRepository;
+import domain.PaymentMethod;
 import domain.State;
 import domain.Table;
 import domain.TableRepository;
@@ -25,6 +26,11 @@ public class ChickenStoreController {
 
         if (choiceInMain == ChoiceInMain.PAY) {
             OutputView.printTables(tables);
+            final Table tablePaying = InputView.inputTableNumber(tables);
+            OutputView.printOrders(tablePaying);
+            final PaymentMethod paymentMethod = InputView.inputPaymentMethod(tablePaying);
+            double finalAmountDue = paymentMethod.handleCashDiscount(tablePaying.calculateAmountDue());
+            OutputView.printFinalAmountDue(finalAmountDue);
         }
 
         if (choiceInMain == ChoiceInMain.TERMINATE) {

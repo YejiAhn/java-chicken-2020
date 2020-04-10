@@ -61,15 +61,15 @@ public class InputView {
         }
     }
 
-    public static PaymentMethod inputPaymentMethod(int tableNumber) {
-        System.out.println("## " + tableNumber + "번 테이블의 결제를 진행합니다.");
+    public static PaymentMethod inputPaymentMethod(Table table) {
+        System.out.println("## " + table.getNumber() + "번 테이블의 결제를 진행합니다.");
         System.out.println("## 신용 카드는 1번, 현금은 2번");
         try {
             String paymentMethod = scanner.nextLine();
             return PaymentMethod.of(paymentMethod);
         } catch (Exception e) {
             OutputView.printErrorMessage(e.getMessage());
-            return inputPaymentMethod(tableNumber);
+            return inputPaymentMethod(table);
         }
     }
 }

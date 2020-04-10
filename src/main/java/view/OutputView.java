@@ -57,6 +57,16 @@ public class OutputView {
         System.out.println();
     }
 
+    public static void printOrders(Table table) {
+        System.out.println("## 주문 내역\n메뉴 수량 금액");
+        System.out.println(table.getOrderedMenu());
+    }
+
+    public static void printFinalAmountDue(double money) {
+        System.out.println("## 최종 결제할 금액");
+        System.out.println(money + "원");
+    }
+
     public static void printTerminateMessage() {
         System.out.println("프로그램을 종료합니다.");
     }
