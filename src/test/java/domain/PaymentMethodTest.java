@@ -3,6 +3,7 @@ package domain;
 import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -21,5 +22,16 @@ public class PaymentMethodTest {
     @ValueSource(strings = {"1", "2"})
     void paymentValid(String input) {
         assertThat(PaymentMethod.of(input)).isInstanceOf(PaymentMethod.class);
+    }
+
+    @Test
+    @DisplayName("현금 할인이 제대로 들어가는지, 카드는 할인이 되지 않는지")
+    void cashDiscount() {
+        final PaymentMethod cash = PaymentMethod.CASH;
+        final PaymentMethod card = PaymentMethod.CREDIT_CARD;
+        final double discountedAmount = cash.handleCashDiscount(100);
+        final double notDiscountedAmount = card.handleCashDiscount(100);
+        assertThat(discountedAmount).isEqualTo(95);
+        assertThat(notDiscountedAmount).isEqualTo(100);
     }
 }

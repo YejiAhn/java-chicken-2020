@@ -60,6 +60,25 @@ public class TableTest {
         assertThatThrownBy(() -> {
             table.order(menu, 50);
         }).isInstanceOf(IllegalArgumentException.class).hasMessageContaining("한 메뉴의 최대 수량은");
-
     }
+
+    @Test
+    @DisplayName("결제금액이 제대로 반환되는지")
+    void calculateAmountDue() {
+        table.order(MenuTest.chickenMenu1, 4);
+        assertThat(table.calculateAmountDue()).isEqualTo(72000);
+        table.order(MenuTest.chickenMenu1, 6);
+        assertThat(table.calculateAmountDue()).isEqualTo(170000);
+        table.order(MenuTest.beverageMenu1, 3);
+        assertThat(table.calculateAmountDue()).isEqualTo(173000);
+        table.order(MenuTest.chickenMenu1, 1);
+        assertThat(table.calculateAmountDue()).isEqualTo(191000);
+    }
+
+    @Test
+    @DisplayName("테이블 번호가 제대로 반환되는지")
+    void getNumberTest() {
+        assertThat(table.getNumber()).isEqualTo(1);
+    }
+
 }
