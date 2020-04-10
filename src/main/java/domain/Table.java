@@ -17,6 +17,10 @@ public class Table {
     }
 
     public void order(Menu menu, int menuQuantity) {
+        int totalQuantityForSpecificMenu = orderedMenu.getOrDefault(menu, INITIAL_VALUE_ZERO) + menuQuantity;
+        if (totalQuantityForSpecificMenu > 99) {
+            throw new IllegalArgumentException("한 테이블에서 주문할 수 있는 한 메뉴의 최대 수량은 99개입니다.");
+        }
         orderedMenu.put(menu, orderedMenu.getOrDefault(menu, INITIAL_VALUE_ZERO) + menuQuantity);
     }
 
